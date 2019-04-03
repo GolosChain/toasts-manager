@@ -7,19 +7,31 @@ React toasts manager library.
 #### Import:
 
 ```javascript
-import ToastsManager from 'toasts-manager';
+import ToastsManager, { Toast } from 'toasts-manager';
+
+ReactDOM.render(
+  <div>
+    ...
+    <ToastsManager renderToast={({ type, text, onClose }) => (
+      <Toast onClick={onClose}>
+        {type}: {text}
+      </Toast>
+    )} />
+  </div>,
+  document.getElementById('root')
+)
 ```
 
 #### Show standard info/warn/error toasts:
 
 ```javascript
-// Show toast with success icon and text
+// Show toast rendered by renderToast function with params type = 'info' and text
 ToastsManager.info('Post sent success');
 
-// Show toast with warning icon and text
+// Show toast rendered by renderToast function with params type = 'warn' and text
 ToastsManager.warn('Comments depth exceeded');
 
-// Show toast with error icon and text
+// Show toast rendered by renderToast function with params type = 'error' and text
 ToastsManager.error('Network Error');
 ```
 
