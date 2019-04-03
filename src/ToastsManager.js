@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow,react/no-unused-state */
 import React, { PureComponent, createRef } from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import is from 'styled-is';
 
@@ -108,6 +109,14 @@ export default class ToastsManager extends PureComponent {
       renderer,
     });
   }
+
+  static propTypes = {
+    renderToast: PropTypes.func,
+  };
+
+  static defaultProps = {
+    renderToast: null,
+  };
 
   lastId = 0;
 
