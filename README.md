@@ -26,7 +26,7 @@ ToastsManager.error('Network Error');
 #### Use with custom component:
 
 ```javascript
-import { ToastsManager, Toast } from 'toasts-manager';
+import ToastsManager, { Toast } from 'toasts-manager';
 
 ToastsManager.show(({ onClose }) => (
   <Toast>
