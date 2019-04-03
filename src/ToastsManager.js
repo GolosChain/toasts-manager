@@ -3,6 +3,8 @@ import React, { PureComponent, createRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import is from 'styled-is';
 
+import Toast from './Toast';
+
 const LIMIT = 3;
 const HIDE_TIMEOUT = 7000;
 const HIDE_LEAVE_TIMEOUT = 5000;
@@ -377,11 +379,6 @@ export default class ToastsManager extends PureComponent {
 
       const render = renderer || renderToast;
 
-      if (!render) {
-        console.error(new Error('ToastsManager: No toast render function'));
-        return null;
-      }
-
       return (
         <ToastContainer
           key={id}
@@ -390,7 +387,11 @@ export default class ToastsManager extends PureComponent {
           bottomOffset={bottomOffset}
         >
           <ToastWrapper isAppearing={isOffsetCalculated} isHiding={isHiding}>
-            {render({ type, text, onClose: () => this.onCloseClick(id) })}
+            {render ? (
+              render({ type, text, onClose: () => this.onCloseClick(id) })
+            ) : (
+              <Toast>{text}</Toast>
+            )}
           </ToastWrapper>
         </ToastContainer>
       );

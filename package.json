@@ -1,9 +1,10 @@
 {
   "name": "toasts-manager",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React Toasts Manager library",
   "main": "lib/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "build": "babel src -d lib --delete-dir-on-start"
   },
   "keywords": [
