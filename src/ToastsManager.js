@@ -134,12 +134,9 @@ export default class ToastsManager extends PureComponent {
     isHovered: false,
   };
 
-  constructor(props) {
-    super(props);
-    instance = this;
-  }
-
   componentDidMount() {
+    instance = this;
+
     window.addEventListener('blur', this.onLeave);
   }
 
