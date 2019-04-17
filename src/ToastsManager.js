@@ -155,7 +155,9 @@ export default class ToastsManager extends PureComponent {
   }
 
   componentWillUnmount() {
-    instance = null;
+    if (instance === this) {
+      instance = null;
+    }
 
     window.removeEventListener('blur', this.onLeave);
 
