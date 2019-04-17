@@ -6,6 +6,8 @@ export default styled.div`
   max-width: 100%;
   min-height: 56px;
   padding: 16px;
+  word-break: break-all;
+  word-break: break-word;
   border-radius: 8px;
   background: #fff;
   cursor: initial;
