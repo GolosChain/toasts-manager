@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   left: 16px;
   right: 16px;
   bottom: 8px;
-  z-index: 200;
+  z-index: 9999;
 
   @media (min-width: 500px) {
     left: 30px;
