@@ -11,7 +11,6 @@ export default styled.div`
   border-radius: 8px;
   background: #fff;
   cursor: initial;
-  user-select: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
   @media (min-width: 500px) {
