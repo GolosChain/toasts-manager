@@ -4,8 +4,9 @@ export default styled.div`
   display: flex;
   width: 100%;
   max-width: 100%;
-  min-height: 56px;
+  min-height: 40px;
   padding: 16px;
+  box-sizing: border-box;
   word-break: break-all;
   word-break: break-word;
   border-radius: 8px;
