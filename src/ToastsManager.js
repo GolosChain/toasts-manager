@@ -111,11 +111,13 @@ export default class ToastsManager extends PureComponent {
   }
 
   static propTypes = {
+    className: PropTypes.string,
     renderToast: PropTypes.func,
   };
 
   static defaultProps = {
-    renderToast: null,
+    className: undefined,
+    renderToast: undefined,
   };
 
   lastId = 0;
@@ -407,8 +409,10 @@ export default class ToastsManager extends PureComponent {
   }
 
   render() {
+    const { className } = this.props;
+
     return (
-      <Wrapper onMouseEnter={this.onMouseEnter} onMouseLeave={this.onLeave}>
+      <Wrapper className={className} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onLeave}>
         {this.renderToasts()}
       </Wrapper>
     );
