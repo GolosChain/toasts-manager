@@ -22,6 +22,10 @@ ReactDOM.render(
 )
 ```
 
+#### ToastsManager props:
+
+* **anchor** - values: ["left", "right"] default: "left"
+
 #### Show standard info/warn/error toasts:
 
 ```javascript

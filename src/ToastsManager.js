@@ -28,6 +28,15 @@ const toLeftAnimation = keyframes`
   }
 `;
 
+const toRightAnimation = keyframes`
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(500px, 0);
+  }
+`;
+
 const Wrapper = styled.div`
   position: fixed;
   left: 16px;
@@ -51,6 +60,11 @@ const ToastContainer = styled.div`
   transition: transform 0.3s ease-out;
   transform: translate(0, -${({ bottomOffset }) => bottomOffset}px);
 
+  ${is('isRight')`
+    left: unset;
+    right: 0;
+  `};
+
   ${is('isInvisible')`
     visibility: hidden;
   `};
@@ -61,9 +75,7 @@ const ToastWrapper = styled.div`
     animation: ${fromBottomAnimation} 0.4s ease-out;
   `};
 
-  ${is('isHiding')`
-    animation: ${toLeftAnimation} 0.3s ease-in forwards;
-  `};
+  ${({ animation }) => (animation ? `animation: ${animation} 0.3s ease-in forwards` : '')};
 `;
 
 let instance;
@@ -112,11 +124,13 @@ export default class ToastsManager extends PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
+    anchor: PropTypes.oneOf(['left', 'right']),
     renderToast: PropTypes.func,
   };
 
   static defaultProps = {
     className: undefined,
+    anchor: 'left',
     renderToast: undefined,
   };
 
@@ -380,8 +394,11 @@ export default class ToastsManager extends PureComponent {
   }
 
   renderToasts() {
-    const { renderToast } = this.props;
+    const { renderToast, anchor } = this.props;
     const { currentToasts, bottomOffsets } = this.state;
+
+    const isRight = anchor === 'right';
+    const hideAnimation = isRight ? toRightAnimation : toLeftAnimation;
 
     return currentToasts.map(({ id, type, text, renderer, isHiding }) => {
       const bottomOffset = bottomOffsets[id];
@@ -394,9 +411,13 @@ export default class ToastsManager extends PureComponent {
           key={id}
           ref={this.toastsRefs[id]}
           isInvisible={!isOffsetCalculated}
+          isRight={isRight}
           bottomOffset={bottomOffset}
         >
-          <ToastWrapper isAppearing={isOffsetCalculated} isHiding={isHiding}>
+          <ToastWrapper
+            isAppearing={isOffsetCalculated}
+            animation={isHiding ? hideAnimation : null}
+          >
             {render ? (
               render({ type, text, onClose: () => this.onCloseClick(id) })
             ) : (
