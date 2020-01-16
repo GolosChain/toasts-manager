@@ -75,7 +75,13 @@ const ToastWrapper = styled.div`
     animation: ${fromBottomAnimation} 0.4s ease-out;
   `};
 
-  ${({ animation }) => (animation ? `animation: ${animation} 0.3s ease-in forwards` : '')};
+  ${({ isHiding, isRight }) => {
+    if (isHiding) {
+      return `animation: ${isRight ? toRightAnimation : toLeftAnimation} 0.3s ease-in forwards;`;
+    }
+
+    return '';
+  }};
 `;
 
 let instance;
@@ -398,7 +404,6 @@ export default class ToastsManager extends PureComponent {
     const { currentToasts, bottomOffsets } = this.state;
 
     const isRight = anchor === 'right';
-    const hideAnimation = isRight ? toRightAnimation : toLeftAnimation;
 
     return currentToasts.map(({ id, type, text, renderer, isHiding }) => {
       const bottomOffset = bottomOffsets[id];
@@ -414,10 +419,7 @@ export default class ToastsManager extends PureComponent {
           isRight={isRight}
           bottomOffset={bottomOffset}
         >
-          <ToastWrapper
-            isAppearing={isOffsetCalculated}
-            animation={isHiding ? hideAnimation : null}
-          >
+          <ToastWrapper isRight={isRight} isAppearing={isOffsetCalculated} isHiding={isHiding}>
             {render ? (
               render({ type, text, onClose: () => this.onCloseClick(id) })
             ) : (
