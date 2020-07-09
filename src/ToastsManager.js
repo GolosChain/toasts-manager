@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow,react/no-unused-state */
 import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import is from 'styled-is';
 
 import Toast from './Toast';
@@ -77,7 +77,7 @@ const ToastWrapper = styled.div`
 
   ${({ isHiding, isRight }) => {
     if (isHiding) {
-      return `animation: ${isRight ? toRightAnimation : toLeftAnimation} 0.3s ease-in forwards;`;
+      return css`animation: ${isRight ? toRightAnimation : toLeftAnimation} 0.3s ease-in forwards;`;
     }
 
     return '';
