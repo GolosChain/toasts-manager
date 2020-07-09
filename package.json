@@ -1,6 +1,6 @@
 {
   "name": "toasts-manager",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "React Toasts Manager library",
   "main": "lib/index.js",
   "scripts": {
