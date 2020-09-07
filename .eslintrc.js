@@ -16,6 +16,7 @@ module.exports = {
   },
 
   rules: {
+    'react/sort-comp': 'off',
     'react/jsx-filename-extension': [
       'error',
       {
